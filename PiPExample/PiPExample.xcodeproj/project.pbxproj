@@ -10,9 +10,14 @@
 		97BBF77F2AB312CF001297A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBF77E2AB312CF001297A0 /* AppDelegate.swift */; };
 		97BBF7812AB312CF001297A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBF7802AB312CF001297A0 /* SceneDelegate.swift */; };
 		97BBF7832AB312CF001297A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBF7822AB312CF001297A0 /* ViewController.swift */; };
-		97BBF7862AB312CF001297A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97BBF7842AB312CF001297A0 /* Main.storyboard */; };
 		97BBF7882AB312D0001297A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97BBF7872AB312D0001297A0 /* Assets.xcassets */; };
-		97BBF78B2AB312D0001297A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97BBF7892AB312D0001297A0 /* LaunchScreen.storyboard */; };
+		97BBF7992AB314F6001297A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97BBF7952AB314F6001297A0 /* Main.storyboard */; };
+		97BBF79A2AB314F6001297A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97BBF7972AB314F6001297A0 /* LaunchScreen.storyboard */; };
+		97BBF79D2AB315AB001297A0 /* TwilioVideo in Frameworks */ = {isa = PBXBuildFile; productRef = 97BBF79C2AB315AB001297A0 /* TwilioVideo */; };
+		97BBF7A52AB31658001297A0 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBF7A12AB31658001297A0 /* Colors.swift */; };
+		97BBF7A62AB31658001297A0 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBF7A22AB31658001297A0 /* Settings.swift */; };
+		97BBF7A72AB31658001297A0 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBF7A32AB31658001297A0 /* SettingsTableViewController.swift */; };
+		97BBF7A82AB31658001297A0 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BBF7A42AB31658001297A0 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +25,14 @@
 		97BBF77E2AB312CF001297A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97BBF7802AB312CF001297A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		97BBF7822AB312CF001297A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		97BBF7852AB312CF001297A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		97BBF7872AB312D0001297A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		97BBF78A2AB312D0001297A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97BBF78C2AB312D0001297A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97BBF7962AB314F6001297A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		97BBF7982AB314F6001297A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		97BBF7A12AB31658001297A0 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = ../../../Utils/Colors.swift; sourceTree = "<group>"; };
+		97BBF7A22AB31658001297A0 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = ../../../Utils/Settings.swift; sourceTree = "<group>"; };
+		97BBF7A32AB31658001297A0 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = ../../../Utils/SettingsTableViewController.swift; sourceTree = "<group>"; };
+		97BBF7A42AB31658001297A0 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = ../../../Utils/Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97BBF79D2AB315AB001297A0 /* TwilioVideo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +66,35 @@
 		97BBF77D2AB312CF001297A0 /* PiPExample */ = {
 			isa = PBXGroup;
 			children = (
+				97BBF7A02AB31629001297A0 /* Utils */,
+				97BBF7922AB3143E001297A0 /* Storyboards */,
 				97BBF77E2AB312CF001297A0 /* AppDelegate.swift */,
 				97BBF7802AB312CF001297A0 /* SceneDelegate.swift */,
 				97BBF7822AB312CF001297A0 /* ViewController.swift */,
-				97BBF7842AB312CF001297A0 /* Main.storyboard */,
 				97BBF7872AB312D0001297A0 /* Assets.xcassets */,
-				97BBF7892AB312D0001297A0 /* LaunchScreen.storyboard */,
 				97BBF78C2AB312D0001297A0 /* Info.plist */,
 			);
 			path = PiPExample;
+			sourceTree = "<group>";
+		};
+		97BBF7922AB3143E001297A0 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				97BBF7972AB314F6001297A0 /* LaunchScreen.storyboard */,
+				97BBF7952AB314F6001297A0 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		97BBF7A02AB31629001297A0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				97BBF7A12AB31658001297A0 /* Colors.swift */,
+				97BBF7A22AB31658001297A0 /* Settings.swift */,
+				97BBF7A32AB31658001297A0 /* SettingsTableViewController.swift */,
+				97BBF7A42AB31658001297A0 /* Utils.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +113,9 @@
 			dependencies = (
 			);
 			name = PiPExample;
+			packageProductDependencies = (
+				97BBF79C2AB315AB001297A0 /* TwilioVideo */,
+			);
 			productName = PiPExample;
 			productReference = 97BBF77B2AB312CF001297A0 /* PiPExample.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +144,9 @@
 				Base,
 			);
 			mainGroup = 97BBF7722AB312CF001297A0;
+			packageReferences = (
+				97BBF79B2AB315AB001297A0 /* XCRemoteSwiftPackageReference "twilio-video-ios" */,
+			);
 			productRefGroup = 97BBF77C2AB312CF001297A0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,9 +161,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97BBF78B2AB312D0001297A0 /* LaunchScreen.storyboard in Resources */,
+				97BBF79A2AB314F6001297A0 /* LaunchScreen.storyboard in Resources */,
 				97BBF7882AB312D0001297A0 /* Assets.xcassets in Resources */,
-				97BBF7862AB312CF001297A0 /* Main.storyboard in Resources */,
+				97BBF7992AB314F6001297A0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,26 +175,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				97BBF7832AB312CF001297A0 /* ViewController.swift in Sources */,
+				97BBF7A52AB31658001297A0 /* Colors.swift in Sources */,
+				97BBF7A72AB31658001297A0 /* SettingsTableViewController.swift in Sources */,
+				97BBF7A82AB31658001297A0 /* Utils.swift in Sources */,
 				97BBF77F2AB312CF001297A0 /* AppDelegate.swift in Sources */,
 				97BBF7812AB312CF001297A0 /* SceneDelegate.swift in Sources */,
+				97BBF7A62AB31658001297A0 /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		97BBF7842AB312CF001297A0 /* Main.storyboard */ = {
+		97BBF7952AB314F6001297A0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				97BBF7852AB312CF001297A0 /* Base */,
+				97BBF7962AB314F6001297A0 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		97BBF7892AB312D0001297A0 /* LaunchScreen.storyboard */ = {
+		97BBF7972AB314F6001297A0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				97BBF78A2AB312D0001297A0 /* Base */,
+				97BBF7982AB314F6001297A0 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -358,6 +398,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		97BBF79B2AB315AB001297A0 /* XCRemoteSwiftPackageReference "twilio-video-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:twilio/twilio-video-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		97BBF79C2AB315AB001297A0 /* TwilioVideo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97BBF79B2AB315AB001297A0 /* XCRemoteSwiftPackageReference "twilio-video-ios" */;
+			productName = TwilioVideo;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 97BBF7732AB312CF001297A0 /* Project object */;
 }
