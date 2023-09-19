@@ -10,9 +10,9 @@ import Foundation
 struct PlatformUtils {
     static let isSimulator: Bool = {
         var isSim = false
-        #if arch(i386) || arch(x86_64)
-            isSim = true
-        #endif
+#if arch(i386) || arch(x86_64)
+        isSim = true
+#endif
         return isSim
     }()
 }
@@ -28,7 +28,9 @@ struct TokenUtils {
                 return
             }
             
-            if let data = data, let tokenReponse = String(data: data, encoding: .utf8) {
+            if let data = data,
+               let tokenReponse = String(data: data, encoding: .utf8) {
+                print("Token \(tokenReponse)")
                 token = tokenReponse
                 completionHandler(token, nil)
             }

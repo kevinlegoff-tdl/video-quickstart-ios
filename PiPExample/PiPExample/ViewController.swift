@@ -1,6 +1,9 @@
 import UIKit
+import AVKit
 
 import TwilioVideo
+import AVFoundation
+
 
 class ViewController: UIViewController {
 
@@ -11,7 +14,7 @@ class ViewController: UIViewController {
     var accessToken = "TWILIO_ACCESS_TOKEN"
 
     // Configure remote URL to fetch token from
-    let tokenUrl = "http://localhost:8000/token.php"
+    let tokenUrl = "https://70d8-78-84-172-74.ngrok-free.app"
 
     // Video SDK components
     var room: Room?
@@ -19,7 +22,9 @@ class ViewController: UIViewController {
     var localVideoTrack: LocalVideoTrack?
     var localAudioTrack: LocalAudioTrack?
     var remoteParticipant: RemoteParticipant?
-    var remoteView: VideoView?
+
+    var remoteView: VideoView!
+    var pipView: PictureInPictureSetupView!
 
     // MARK:- UI Element Outlets and handles
 
@@ -75,47 +80,34 @@ class ViewController: UIViewController {
     }
 
     func setupRemoteVideoView() {
-        // Creating `VideoView` programmatically
-        self.remoteView = VideoView(frame: CGRect.zero, delegate: self)
 
+        self.remoteView = VideoView(frame: CGRect.zero, delegate: self)
         self.view.insertSubview(self.remoteView!, at: 0)
 
         // `VideoView` supports scaleToFill, scaleAspectFill and scaleAspectFit
         // scaleAspectFit is the default mode when you create `VideoView` programmatically.
-        self.remoteView!.contentMode = .scaleAspectFit;
+        self.remoteView!.contentMode = .scaleAspectFill;
 
-        let centerX = NSLayoutConstraint(item: self.remoteView!,
-                                         attribute: NSLayoutConstraint.Attribute.centerX,
-                                         relatedBy: NSLayoutConstraint.Relation.equal,
-                                         toItem: self.view,
-                                         attribute: NSLayoutConstraint.Attribute.centerX,
-                                         multiplier: 1,
-                                         constant: 0);
-        self.view.addConstraint(centerX)
-        let centerY = NSLayoutConstraint(item: self.remoteView!,
-                                         attribute: NSLayoutConstraint.Attribute.centerY,
-                                         relatedBy: NSLayoutConstraint.Relation.equal,
-                                         toItem: self.view,
-                                         attribute: NSLayoutConstraint.Attribute.centerY,
-                                         multiplier: 1,
-                                         constant: 0);
-        self.view.addConstraint(centerY)
-        let width = NSLayoutConstraint(item: self.remoteView!,
-                                       attribute: NSLayoutConstraint.Attribute.width,
-                                       relatedBy: NSLayoutConstraint.Relation.equal,
-                                       toItem: self.view,
-                                       attribute: NSLayoutConstraint.Attribute.width,
-                                       multiplier: 1,
-                                       constant: 0);
-        self.view.addConstraint(width)
-        let height = NSLayoutConstraint(item: self.remoteView!,
-                                        attribute: NSLayoutConstraint.Attribute.height,
-                                        relatedBy: NSLayoutConstraint.Relation.equal,
-                                        toItem: self.view,
-                                        attribute: NSLayoutConstraint.Attribute.height,
-                                        multiplier: 1,
-                                        constant: 0);
-        self.view.addConstraint(height)
+        // Position the remote view in center of the ViewController with full height and full width
+        NSLayoutConstraint.activate([
+            self.remoteView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.remoteView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            self.remoteView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+            self.remoteView.heightAnchor.constraint(equalTo: self.view.heightAnchor),
+        ])
+        setupPictureInPicture()
+    }
+
+    private func setupPictureInPicture() {
+        self.pipView = PictureInPictureSetupView(frame: .zero)
+        self.pipView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.insertSubview(pipView, at: 1)
+        NSLayoutConstraint.activate([
+            self.pipView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.pipView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            self.pipView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+            self.pipView.heightAnchor.constraint(equalTo: self.view.heightAnchor),
+        ])
     }
 
     func connectToARoom() {
@@ -156,7 +148,7 @@ class ViewController: UIViewController {
 
             // The name of the Room where the Client will attempt to connect to. Please note that if you pass an empty
             // Room `name`, the Client will create one for you. You can get the name or sid from any connected Room.
-            builder.roomName = self.roomTextField.text
+            builder.roomName = "testPip"
         }
 
         // Connect to the Room using the options we provided.
@@ -295,7 +287,7 @@ class ViewController: UIViewController {
         if (localVideoTrack == nil) {
             self.startPreview()
         }
-   }
+    }
 
     // Update our UI based upon if we are in a Room or not
     func showRoomUI(inRoom: Bool) {
@@ -328,9 +320,10 @@ class ViewController: UIViewController {
         let videoPublications = participant.remoteVideoTracks
         for publication in videoPublications {
             if let subscribedVideoTrack = publication.remoteTrack,
-                publication.isTrackSubscribed {
+               publication.isTrackSubscribed {
                 setupRemoteVideoView()
                 subscribedVideoTrack.addRenderer(self.remoteView!)
+                self.pipView.configure(participant: participant)
                 self.remoteParticipant = participant
                 return true
             }
@@ -342,7 +335,7 @@ class ViewController: UIViewController {
         for participant in participants {
             // Find the first renderable track.
             if participant.remoteVideoTracks.count > 0,
-                renderRemoteParticipant(participant: participant) {
+               renderRemoteParticipant(participant: participant) {
                 break
             }
         }
@@ -350,8 +343,8 @@ class ViewController: UIViewController {
 
     func cleanupRemoteParticipant() {
         if self.remoteParticipant != nil {
-            self.remoteView?.removeFromSuperview()
-            self.remoteView = nil
+            self.pipView?.removeFromSuperview()
+            self.pipView = nil
             self.remoteParticipant = nil
         }
     }
@@ -462,7 +455,7 @@ extension ViewController : RemoteParticipantDelegate {
 
             // Find another Participant video to render, if possible.
             if var remainingParticipants = room?.remoteParticipants,
-                let index = remainingParticipants.firstIndex(of: participant) {
+               let index = remainingParticipants.firstIndex(of: participant) {
                 remainingParticipants.remove(at: index)
                 renderRemoteParticipants(participants: remainingParticipants)
             }
@@ -519,5 +512,21 @@ extension ViewController : VideoViewDelegate {
 extension ViewController : CameraSourceDelegate {
     func cameraSourceDidFail(source: CameraSource, error: Error) {
         logMessage(messageText: "Camera source failed with error: \(error.localizedDescription)")
+    }
+}
+
+
+extension ViewController: AVPictureInPictureControllerDelegate {
+
+    func pictureInPictureControllerWillStartPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
+        NSLog("[Kevin] -> Will Start Picture In Picture ")
+    }
+
+    func pictureInPictureControllerDidStartPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
+        NSLog("[Kevin] -> Did start picture In picture ")
+    }
+
+    func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, failedToStartPictureInPictureWithError error: Error) {
+        NSLog("[Kevin] -> Error while starting picture in picture \(error.localizedDescription)")
     }
 }
