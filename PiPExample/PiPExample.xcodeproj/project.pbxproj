@@ -23,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		972EAFA62AB9E195006D67AC /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
+		972EAFA72ABB1E56006D67AC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		97BBF77B2AB312CF001297A0 /* PiPExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiPExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97BBF77E2AB312CF001297A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97BBF7802AB312CF001297A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +79,7 @@
 				97BBF7822AB312CF001297A0 /* ViewController.swift */,
 				97BBF7872AB312D0001297A0 /* Assets.xcassets */,
 				97BBF78C2AB312D0001297A0 /* Info.plist */,
+				972EAFA72ABB1E56006D67AC /* README.md */,
 			);
 			path = PiPExample;
 			sourceTree = "<group>";
@@ -339,7 +341,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "/Users/kevinlegoff/twilio/video/video-quickstart-ios/PiPExample/App.entitlements";
+				CODE_SIGN_ENTITLEMENTS = App.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -373,7 +375,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "/Users/kevinlegoff/twilio/video/video-quickstart-ios/PiPExample/App.entitlements";
+				CODE_SIGN_ENTITLEMENTS = App.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

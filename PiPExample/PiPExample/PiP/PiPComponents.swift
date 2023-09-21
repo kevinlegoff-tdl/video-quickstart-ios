@@ -19,7 +19,6 @@ class PIPPlaceholderView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .black
         addSubview(label)
 
         label.textColor = .white
@@ -28,7 +27,6 @@ class PIPPlaceholderView: UIView {
 
     override func didMoveToSuperview() {
         guard let superview = superview else {
-            NSLog("[Kevin] PIPPlaceholderView didMoveToSuperview but superview is nil")
             return
         }
 
@@ -75,9 +73,8 @@ class PictureInPictureSetupView: UIView {
         pipVideoCallViewController.preferredContentSize = CGSize(width: 100, height: 150)
 
         placeholderView = PIPPlaceholderView()
-        pipVideoCallViewController.view.addSubview(placeholderView)
-
         pipVideoCallViewController.view.addSubview(videoView)
+        pipVideoCallViewController.view.addSubview(placeholderView)
 
         videoView.translatesAutoresizingMaskIntoConstraints = false;
 
@@ -106,11 +103,8 @@ class PictureInPictureSetupView: UIView {
     }
 
     func configure(participant: RemoteParticipant) {
-        NSLog("[Kevin] We have configure the PictureInPictureSetupView")
         placeholderView.configure(participantName: participant.identity)
-        // TODO: KLG Do we want to ensure for camera here
         videoView.videoTrack = participant.videoTracks.first?.videoTrack
-        //videoView.alpha = participant.isCameraTrackSwitchedOff || participant.cameraTrack == nil ? 0 : 1
     }
 }
 
